@@ -1,0 +1,41 @@
+{
+    "name": "javoscript/laravel-macroable-models",
+    "description": "A package for adding methods to Laravel models on the fly",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Javier Ugarte",
+            "email": "javougarte@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "orchestra/testbench": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Javoscript\\MacroableModels\\":"src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Javoscript\\MacroableModels\\Tests\\":"tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html tests/results/coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Javoscript\\MacroableModels\\MacroableModelsServiceProvider"
+            ],
+            "aliases": {
+                "MacroableModels": "Javoscript\\MacroableModels\\Facades\\MacroableModels"
+            }
+        }
+    }
+}
