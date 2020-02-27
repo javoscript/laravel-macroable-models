@@ -1,0 +1,3 @@
+.phpunit*
+vendor
+tests/results
