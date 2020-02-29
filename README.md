@@ -1,11 +1,11 @@
 # Laravel macroable models
 A package for adding methods to Laravel models on the fly 🕊
 
-The package offers developers an easy way of programmatically adding methods to Laravel Eloquent [https://laravel.com/docs/6.x/eloquent#defining-models](models). Behind the scenes, it makes use of Laravel's own macroable trait. For more details, check the post where I explain how I did it in my [https://javoscript.com](blog) (blog post coming soon 😇).
+The package offers developers an easy way of programmatically adding methods to Laravel Eloquent [models](https://laravel.com/docs/6.x/eloquent#defining-models). Behind the scenes, it makes use of Laravel's own macroable trait. For more details, check the post where I explain how I did it in my [blog](https://javoscript.com) (blog post coming soon 😇).
 
 ## Installation
 Just install the package with `composer`
-> $> composer require javoscript/laravel-macroable-models
+> composer require javoscript/laravel-macroable-models
 
 **(Only necessary for Laravel <5.5, or if you want to be explicit)** - Add the Service Provider to the `providers` array in the `config/app.php` file
 ```php
@@ -20,9 +20,9 @@ $providers = [
 ```
 
 ## Usage example
-The package provides a [https://laravel.com/docs/6.x/facades](Facade) to facilitate access to it's functionality. Alternatively, you can access it through the `app('macroable-models')` helper.
+The package provides a [Facade](https://laravel.com/docs/6.x/facades) to facilitate access to it's functionality. Alternatively, you can access it through the `app('macroable-models')` helper.
 
-For obvious reasons, macros should be added to the model before other parts of the system make use of it. Because of this, the `boot` method of [https://laravel.com/docs/6.x/providers](Service Providers) is a good place to start adding macros.
+For obvious reasons, macros should be added to the model before other parts of the system make use of it. Because of this, the `boot` method of [Service Providers](https://laravel.com/docs/6.x/providers) is a good place to start adding macros.
 
 For example, adding a method to the `\App\User` model in `AppServiceProvider`:
 
@@ -38,11 +38,11 @@ use \App\User;
 
 public function boot()
 {
-    
+
     MacroableModels::addMacro(User::class, 'sayHi', function() {
         return 'Hi!';
     });
-    
+
 }
 
 ```
@@ -51,7 +51,7 @@ After adding the macro to the `User` model, now every instance of this Eloquent 
 We can quickly verify this within `artisan tinker`:
 
 ```
-$> php artisan tinker
+php artisan tinker
 
 >>> \App\User::first()->sayHi()
 => "Hi!"
@@ -62,7 +62,7 @@ If you want to keep multiple macro definitions together, then adding a Service P
 
 You can generate a new Service Provider with `artisan`:
 ```
-$> php artisan make:provider MacrosServiceProvider
+php artisan make:provider MacrosServiceProvider
 ```
 
 Then, you should add it to the `providers` array in the `config/app.php` file.
@@ -121,14 +121,14 @@ MacroableModels::addMacro(\App\User::class, 'sayHi', function() { return "Hi!"; 
 #### With parameters
 The defined macro function can receive any number and type of parameters.
 
-````php
+```php
 
 MacroableModels::addMacro(\App\User::class, 'say', function(string $something) { return $something; });
 
 $user = \App\User::first();
 $user->say("Hello world!");
 
-````
+```
 
 #### Context binding... the correct `$this`
 On the macro function you have access to the `$this` object, which references the instance of the model that is executing the function.
@@ -320,5 +320,5 @@ MacroableModels::macrosForModel(\App\User::class);
 ## Related packages
 There are some related packages out there, from which some inspiration was taken.
 
-* imanghafoori1/eloquent-relativity: [https://github.com/imanghafoori1/eloquent-relativity](github page)
-* spatie/laravel-collection-macros: [https://github.com/spatie/laravel-collection-macros](github page)
+* imanghafoori1/eloquent-relativity: [github](https://github.com/imanghafoori1/eloquent-relativity)
+* spatie/laravel-collection-macros: [github](https://github.com/spatie/laravel-collection-macros)
