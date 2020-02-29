@@ -29,7 +29,11 @@ class MacroableModels
 
         if (isset($this->macros[$name]) && isset($this->macros[$name][$model])) {
             unset($this->macros[$name][$model]);
-            $this->syncMacros($name);
+            if (count($this->macros[$name]) == 0) {
+                unset($this->macros[$name]);
+            } else {
+                $this->syncMacros($name);
+            }
             return true;
         }
 
