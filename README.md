@@ -322,3 +322,4 @@ There are some related packages out there, from which some inspiration was taken
 
 * imanghafoori1/eloquent-relativity: [github](https://github.com/imanghafoori1/eloquent-relativity)
 * spatie/laravel-collection-macros: [github](https://github.com/spatie/laravel-collection-macros)
+* spatie/macroable: [github](https://github.com/spatie/macroable)
