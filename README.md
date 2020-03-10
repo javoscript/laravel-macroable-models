@@ -1,7 +1,7 @@
 # Laravel macroable models
 A package for adding methods to Laravel models on the fly 🕊
 
-The package offers developers an easy way of programmatically adding methods to Laravel Eloquent [models](https://laravel.com/docs/6.x/eloquent#defining-models). Behind the scenes, it makes use of Laravel's own macroable trait. For more details, check the post where I explain how I did it in my [blog](https://javoscript.com) (blog post coming soon 😇).
+The package offers developers an easy way of programmatically adding methods to Laravel Eloquent [models](https://laravel.com/docs/6.x/eloquent#defining-models). Behind the scenes, it makes use of Laravel's own macroable trait. For more details, check the post where I explain how I did it in my [blog](https://javoscript.com/blog/post/adding-macros-to-laravel-eloquent-models).
 
 ## Installation
 Just install the package with `composer`
@@ -322,3 +322,4 @@ There are some related packages out there, from which some inspiration was taken
 
 * imanghafoori1/eloquent-relativity: [github](https://github.com/imanghafoori1/eloquent-relativity)
 * spatie/laravel-collection-macros: [github](https://github.com/spatie/laravel-collection-macros)
+* spatie/macroable: [github](https://github.com/spatie/macroable)
