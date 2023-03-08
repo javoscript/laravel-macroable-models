@@ -26,14 +26,15 @@ class MacroableModels
     public function removeMacro($model, String $name)
     {
         $this->checkModelSubclass($model);
-
+           
         if (isset($this->macros[$name]) && isset($this->macros[$name][$model])) {
             unset($this->macros[$name][$model]);
-            if (count($this->macros[$name]) == 0) {
+            if (count($this->macros[$name]) == 0){
                 unset($this->macros[$name]);
-            } else {
+            } else{
                 $this->syncMacros($name);
             }
+        
             return true;
         }
 
@@ -72,11 +73,12 @@ class MacroableModels
     }
 
     private function syncMacros($name)
-    {
+    {   
         $models = $this->macros[$name];
         Builder::macro($name, function(...$args) use ($name, $models){
-            $class = get_class($this->getModel());
 
+            $class = get_class($this->getModel());
+    
             if (! isset($models[$class])) {
                 throw new \BadMethodCallException("Call to undefined method {$class}::{$name}()");
             }

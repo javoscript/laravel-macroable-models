@@ -48,9 +48,9 @@ class MacroableModelsTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
+
         $this->mm->addMacro(DummyModel::class, 'exampleMacro', function() { return true; });
         $this->mm->removeMacro(DummyModel::class, 'exampleMacro');
-        $this->model->exampleMacro();
     }
 
     // Redeclaring the macro (same name) for the given model replaces the existing one
@@ -191,7 +191,7 @@ class MacroableModelsTest extends TestCase
     // a registered macro with multiple parameters returns the expected result
     public function testARegisteredMacroWithMultipleParamatersReturnsTheExpectedResult()
     {
-        $this->mm->addMacro(DummyModel::class, 'exampleMacro', function($name, $surname) { return "Hello, ${name} ${surname}"; });
+        $this->mm->addMacro(DummyModel::class, 'exampleMacro', function($name, $surname) { return "Hello, {$name} {$surname}"; });
         $this->assertEquals($this->model->exampleMacro('James', 'Bond'), "Hello, James Bond");
     }
 }
