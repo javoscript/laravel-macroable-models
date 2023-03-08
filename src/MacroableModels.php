@@ -53,6 +53,11 @@ class MacroableModels
         return array_keys($this->macros[$name]);
     }
 
+    public function getMacrosForModel($model) {
+        if (!isset($this->macros[$model])) return [];
+        return $this->macros[$model];
+    }
+
     public function macrosForModel($model)
     {
         $this->checkModelSubclass($model);
@@ -74,11 +79,11 @@ class MacroableModels
 
     private function syncMacros($name)
     {   
-        $models = $this->macros[$name];
-        Builder::macro($name, function(...$args) use ($name, $models){
-
+        $that = $this;
+        Builder::macro($name, function(...$args) use ($name, $that){
+            $models = $that->getMacrosForModel($name);
             $class = get_class($this->getModel());
-    
+     
             if (! isset($models[$class])) {
                 throw new \BadMethodCallException("Call to undefined method {$class}::{$name}()");
             }

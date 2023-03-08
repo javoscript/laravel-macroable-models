@@ -48,9 +48,9 @@ class MacroableModelsTest extends TestCase
     {
         $this->expectException(\BadMethodCallException::class);
 
-
-        $this->mm->addMacro(DummyModel::class, 'exampleMacro', function() { return true; });
-        $this->mm->removeMacro(DummyModel::class, 'exampleMacro');
+        $this->mm->addMacro(DummyModel::class, 'exampleMacroRemove', function() { return true; });
+        $this->mm->removeMacro(DummyModel::class, 'exampleMacroRemove');
+        $this->model->exampleMacroRemove();
     }
 
     // Redeclaring the macro (same name) for the given model replaces the existing one
@@ -194,4 +194,5 @@ class MacroableModelsTest extends TestCase
         $this->mm->addMacro(DummyModel::class, 'exampleMacro', function($name, $surname) { return "Hello, {$name} {$surname}"; });
         $this->assertEquals($this->model->exampleMacro('James', 'Bond'), "Hello, James Bond");
     }
+
 }
