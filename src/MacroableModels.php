@@ -18,7 +18,7 @@ class MacroableModels
     {
         $this->checkModelSubclass($model);
 
-        if (! isset($this->macros[$name])) $this->macros[$name] = [];
+        if (!isset($this->macros[$name])) $this->macros[$name] = [];
         $this->macros[$name][$model] = $closure;
         $this->syncMacros($name);
     }
@@ -31,9 +31,8 @@ class MacroableModels
             unset($this->macros[$name][$model]);
             if (count($this->macros[$name]) == 0) {
                 unset($this->macros[$name]);
-            } else {
-                $this->syncMacros($name);
             }
+            $this->syncMacros($name);
             return true;
         }
 
@@ -48,7 +47,7 @@ class MacroableModels
 
     public function modelsThatImplement($name)
     {
-        if (! isset($this->macros[$name])) return [];
+        if (!isset($this->macros[$name])) return [];
         return array_keys($this->macros[$name]);
     }
 
@@ -58,7 +57,7 @@ class MacroableModels
 
         $macros = [];
 
-        foreach($this->macros as $macro => $models) {
+        foreach ($this->macros as $macro => $models) {
             if (in_array($model, array_keys($models))) {
                 $params = (new \ReflectionFunction($this->macros[$macro][$model]))->getParameters();
                 $macros[$macro] = [
@@ -68,16 +67,17 @@ class MacroableModels
             }
         }
 
-         return $macros;
+        return $macros;
     }
 
     private function syncMacros($name)
     {
-        $models = $this->macros[$name];
-        Builder::macro($name, function(...$args) use ($name, $models){
+        $models = $this->macros[$name] ?? [];
+
+        Builder::macro($name, function (...$args) use ($name, $models) {
             $class = get_class($this->getModel());
 
-            if (! isset($models[$class])) {
+            if (!isset($models[$class])) {
                 throw new \BadMethodCallException("Call to undefined method ${class}::${name}()");
             }
 
@@ -88,7 +88,7 @@ class MacroableModels
 
     private function checkModelSubclass(String $model)
     {
-        if (! is_subclass_of($model, Model::class)) {
+        if (!is_subclass_of($model, Model::class)) {
             throw new \InvalidArgumentException('$model must be a subclass of Illuminate\\Database\\Eloquent\\Model');
         }
     }

@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Javoscript\\MacroableModels\\":"src/"
+            "Javoscript\\MacroableModels\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Javoscript\\MacroableModels\\Tests\\":"tests/"
+            "Javoscript\\MacroableModels\\Tests\\": "tests/"
         }
     },
     "scripts": {
