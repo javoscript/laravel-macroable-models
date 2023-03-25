@@ -1,5 +1,5 @@
 {
-    "name": "javoscript/laravel-macroable-models",
+    "name": "gawsoft/laravel-macroable-models",
     "description": "A package for adding methods to Laravel models on the fly",
     "type": "library",
     "license": "MIT",
