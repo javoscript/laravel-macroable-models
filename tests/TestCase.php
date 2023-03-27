@@ -12,7 +12,7 @@ abstract class TestCase extends Base
     {
         parent::setUp();
 
-        $config = require __DIR__.'/config/database.php';
+        $config = require __DIR__ . '/config/database.php';
 
         $db = new DB;
         $db->addConnection($config['sqlite']);
@@ -26,11 +26,11 @@ abstract class TestCase extends Base
     {
         DB::schema()->dropAllTables();
 
-        DB::schema()->create('dummies', function(Blueprint $table) {
+        DB::schema()->create('dummies', function (Blueprint $table) {
             $table->increments('id');
         });
 
-        DB::schema()->create('anothers', function(Blueprint $table) {
+        DB::schema()->create('anothers', function (Blueprint $table) {
             $table->increments('id');
         });
     }

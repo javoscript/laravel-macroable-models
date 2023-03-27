@@ -8,7 +8,7 @@ class MacroableModelsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('macroable-models', function() {
+        $this->app->singleton('macroable-models', function () {
             return new MacroableModels();
         });
     }
