@@ -78,7 +78,7 @@ class MacroableModels
             $class = get_class($this->getModel());
 
             if (!isset($models[$class])) {
-                throw new \BadMethodCallException("Call to undefined method ${class}::${name}()");
+                throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s()', $class, $name));
             }
 
             $closure = \Closure::bind($models[$class], $this->getModel());
